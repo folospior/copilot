@@ -17,7 +17,8 @@ describe('Electron app structure', () => {
   test('package.json build config targets linux', () => {
     const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
     expect(pkg.build.linux).toBeDefined();
-    expect(pkg.build.linux.target).toEqual(expect.arrayContaining(['AppImage', 'deb', 'rpm']));
+    expect(pkg.build.linux.target).toEqual(expect.arrayContaining(['AppImage', 'deb']));
+    expect(pkg.build.linux.target).not.toContain('rpm');
   });
 
   test('src/main.js exists', () => {

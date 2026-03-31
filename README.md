@@ -38,11 +38,30 @@ npm run build:linux
 
 Output files are placed in the `dist/` directory:
 
-| Format   | Description                             |
-|----------|-----------------------------------------|
-| AppImage | Single portable executable              |
-| `.deb`   | Debian / Ubuntu package                 |
-| `.rpm`   | Fedora / RHEL / openSUSE package        |
+| Format   | Description                |
+|----------|----------------------------|
+| AppImage | Single portable executable |
+| `.deb`   | Debian / Ubuntu package    |
+
+## Gentoo
+
+A Gentoo ebuild is provided in the `gentoo/` overlay directory under
+`net-misc/copilot-pwa`.  To use it with a local overlay:
+
+```bash
+# Copy the overlay tree into your local overlay (adjust path as needed)
+cp -r gentoo/net-misc /var/db/repos/localrepo/
+
+# Rebuild the overlay cache
+egencache --update --repo localrepo
+
+# Install
+emerge -av net-misc/copilot-pwa
+```
+
+The ebuild depends on `>=dev-util/electron-33:33` and installs a thin
+wrapper at `/usr/bin/copilot-pwa` that launches the app via the
+system-provided Electron binary.
 
 ## Security
 
