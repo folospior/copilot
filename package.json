@@ -1,0 +1,63 @@
+{
+  "name": "copilot-pwa",
+  "productName": "Copilot",
+  "version": "1.0.0",
+  "description": "GitHub Copilot desktop app for Linux",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:linux": "electron-builder --linux",
+    "test": "jest"
+  },
+  "keywords": [
+    "copilot",
+    "electron",
+    "pwa",
+    "linux"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.4.5",
+    "electron-builder": "^25.1.8",
+    "jest": "^29.7.0"
+  },
+  "build": {
+    "appId": "com.copilot.app",
+    "productName": "Copilot",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "category": "Utility",
+      "icon": "assets/icon.png",
+      "maintainer": "copilot-pwa",
+      "description": "GitHub Copilot desktop app for Linux"
+    },
+    "deb": {
+      "depends": [
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libdrm2",
+        "libgbm1",
+        "libxcb-dri3-0"
+      ]
+    }
+  }
+}
